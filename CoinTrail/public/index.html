@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/dacf5d1f5d.js" crossorigin="anonymous"></script>
+    <title>Coin Trail</title>
+</head>
+<body>
+    <header id="header">
+        <img id="logo" src="images/Cointraillogo.png" alt="Cointrail logo">
+        <button id="sign-in-btn" class="content" onclick="show('sign-in')">Sign In</button>
+    </header>
+    <div id="hero">
+        <h1 id="hero-message" class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
+        <button id="get-started-btn" class="content" onclick="show('get-started')">Get Started</button>
+    </div>
+    <div id="page-content">
+        <div id="historic-data">
+            <h2 class="title content-title">Research Historic Data</h2>
+            <p id="data" class="content">Get access to historic data to see how a coin has performed in the past so as to make sure that your investments are informed.</p>
+        </div>
+        <div id="line"></div>
+        <div id="your-crypto">
+            <h2 class="title content-title">Track your investments</h2>
+            <ul id="track" class="content">
+                <li>Get daily highs and lows</li>
+                <li>Set price or percentage goals</li>
+                <li>Create a portfolio to view overall gains and losses</li>
+            </ul>
+        </div>
+    </div>
+    <div id="lightbox">
+        <div id="get-started" class="content">
+            <div class="line2"></div>
+            <h1 id="create-title" class="title">Create your Account</h1>
+            <div class="line2"></div>
+            <span>Create an account to view and track your crypto investements.</span><br><br>
+            <label for="username">Email</label><br>
+            <input type="text" id="username" class="input"><br><br>
+            <label for="password">Password</label><br>
+            <input type="text" id="password" class="input"><br><br>
+            <label for="confirm-password">Confirm Password</label><br>
+            <input type="text" id="confirm-password" class="input"><br><br>
+            <button id="create-account-btn" class="account" onclick="getStarted()">Create your Account</button>
+        </div>
+        <div id="sign-in" class="content">
+            <div class="line2"></div>
+            <h1 id="sign-title" class="title">Sign In</h1>
+            <div class="line2"></div>
+            <label for="username-sign">Email</label><br>
+            <input type="text" id="username-sign" class="input"><br><br>
+            <label for="password-sign">Password</label><br>
+            <input type="text" id="password-sign" class="input"><br><br>
+            <button class="account" onclick="signIn()">Sign In</button>
+        </div>
+    </div>
+</body>
+</html>
