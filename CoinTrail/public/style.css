@@ -106,7 +106,7 @@ body{
 
 #line{
     grid-area: line;
-    background-color: #ffc300;
+    background-color: #ffd60a;
     margin-top: 10px;
 }
 
@@ -124,13 +124,14 @@ body{
     font-size: 1.2rem;
 }
 
-#lightbox{
+.lightbox{
     position: absolute;
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.618);
+    display: none;
 }
 
 #get-started{
@@ -161,17 +162,72 @@ body{
     width: 400px;
     border-radius: 10px;
     padding: 25px;
-    display: block;
+    display: none;
 }
 
 .input{
     font-family: 'Nunito Sans', sans-serif;
 }
 
-.account{
+.account-btn{
     font-family: 'Montserrat', sans-serif;
     background-color: #ffd60a;
     border-radius: 10px;
     border: 3px solid #ffc300;
     font-weight: 400;
+}
+
+.x{
+    margin-left: 95%;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#error-box{
+    margin: auto;
+    background-color: #fff;
+    width: 400px;
+    height: auto;
+    margin-top: 25px;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#message{
+    font-size: 20px;
+    padding-bottom: 15px;
+}
+
+#ok{
+    margin: auto;
+}
+
+#interface{
+    display: grid;
+    grid-template-areas: 'sidebar main';
+    grid-template-columns: 30% 70%;
+    width: 100%;
+}
+
+.interface-title{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+#side-bar{
+    grid-area: sidebar;
+    padding: 15px;
+}
+
+#main{
+    grid-area: main;
+    padding: 15px;
+}
+
+.interface-box{
+    background-color: #003566;
+    padding: 15px;
+    border: 2px solid #001d3d;
+    border-radius: 10px;;
 }
