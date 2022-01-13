@@ -1,5 +1,5 @@
 /*
-Coolors link : https://coolors.co/000814-001d3d-003566-ffc300-ffd60a
+Coolors link for color palette : https://coolors.co/000814-001d3d-003566-ffc300-ffd60a
     Rich Black #000814
     Oxford Blue #001d3d
     Prussian Blue #003566
@@ -14,11 +14,14 @@ font-family: 'Montserrat', sans-serif;  < for title text
 font-family: 'Nunito Sans', sans-serif; < for body text
 */
 
-
 body{
     padding: 0;
     margin: 0;
     background-color: #f1f1f1;
+}
+
+button:hover{
+    background-color: #ffc300;
 }
 
 .title{
@@ -155,6 +158,14 @@ body{
     margin-bottom: 15px;
 }
 
+.line3{
+    width: 100%;
+    height: 3px;
+    background-color:#003566;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
 #sign-in{
     background-color: #fff;
     margin: auto;
@@ -207,27 +218,52 @@ body{
     grid-template-areas: 'sidebar main';
     grid-template-columns: 30% 70%;
     width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 .interface-title{
     font-size: 20px;
     font-weight: 600;
-    margin-top: 0;
 }
 
 #side-bar{
     grid-area: sidebar;
-    padding: 15px;
+    margin-right: 15px;
 }
 
 #main{
     grid-area: main;
-    padding: 15px;
 }
 
 .interface-box{
-    background-color: #003566;
+    background-color: #f1f1f1;
+    margin-top: 15px;
+}
+
+#coins{
+    margin-bottom: 15px;
+}
+
+#welcome{
+    display: flex;
+    float: left;
+    font-size: 25px;
+    margin: 0;
     padding: 15px;
-    border: 2px solid #001d3d;
-    border-radius: 10px;;
+}
+
+#search-bar{
+    display: flex;
+    float: right;
+    padding: 15px;
+    height: 25px;
+}
+
+#search-btn{
+    background-color: #ffc300;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px #ffd60a4b;
+
 }

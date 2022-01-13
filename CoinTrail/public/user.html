@@ -7,6 +7,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
     <script src="user-script.js"></script>
     <script src="https://kit.fontawesome.com/dacf5d1f5d.js" crossorigin="anonymous"></script>
@@ -17,36 +19,61 @@
         <img id="logo" src="images/Cointraillogo.png" alt="Cointrail logo">
         <button id="sign-in-btn" class="content" onclick="show('sign-out'), show('lightbox')">Sign Out</button>
     </header>
+    <div id="welcome-bar">
+        <h1 id="welcome" class="title"></h1>
+        <div id="search-bar">
+            <input type="text" id="interface-search">
+            <button id="search-btn" onclick="search('interface-search')"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
     <div id="interface">
         <div id="side-bar">
             <div id="assets">
-                <h1 class="title interface-title">Assets</h1>
+                <span class="title interface-title">Assets</span>
+                <div class="line3"></div>
                 <div id="total-assets-box" class="content interface-box">
-                    <span>Total assets in USD</span><br>
+                    <span>Total assets</span><br>
                     <span id="total-assets">USD$0.00</span>
                 </div>
                 <div id="assets-allocation" class="content interface-box">
-                    <span>Asset allocation</span>
+                    <span>Asset allocation</span><br>
                     <span id="no-assets">You don't have any coins yet.</span>
                 </div>
             </div>
         </div>
         <div id="main">
             <div id="coins">
-                <h1 class="title interface-title">Your Coins</h1>
+                <span class="title interface-title">Your Coins</span>
+                <div class="line3"></div>
                 <div id="coins-box" class="content interface-box">
                     <span id="no-coins">You're not trailing any coins yet.</span>
                 </div>
             </div>
             <div id="alerts">
-                <h1 class="title interface-title">Alerts</h1>
+                <span class="title interface-title">Alerts</span>
+                <div class="line3"></div>
                 <div id="alerts-box" class="content interface-box">
                     <span id="no-alerts">You haven't set any alerts yet.</span>
                 </div>
             </div>
         </div>
     </div>
-    <div id="lightbox">
+    <div id="lightbox2" class="lightbox">
+        <div id="error-box">
+            <div class="line2"></div>
+            <div id="message" class="content"></div>
+            <div class="line2"></div>
+            <button id="ok" class="account-btn" onclick="hide('lightbox2')">Ok</button>
+        </div>
+    </div>
+    <div id="coinbox">
+        <div class="line2"></div>
+        <div id="coin-id"></div>
+        <div id="current-price"></div>
+        <div class="line2"></div>
+        <div id="chart-box">
+            <canvas id="chart"></canvas>
+        </div>
     </div>
 </body>
 </html>
