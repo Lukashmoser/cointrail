@@ -1,0 +1,308 @@
+/*
+Coolors link for color palette : https://coolors.co/000814-001d3d-003566-ffc300-ffd60a
+    Rich Black #000814
+    Oxford Blue #001d3d
+    Prussian Blue #003566
+    Mikando Yellow #ffc300
+    Gold Web Golden #ffd60a
+*/
+
+/*font import*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+/*
+font-family: 'Montserrat', sans-serif;  < for title text
+font-family: 'Nunito Sans', sans-serif; < for body text
+*/
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #f1f1f1;
+}
+
+button:hover{
+    background-color: #ffc300;
+}
+
+.title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.content{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.center{
+    text-align: center;
+}
+
+#header{
+    background-color: #001d3d;
+}
+
+#logo{
+    height: 60px;
+    width: auto;
+    margin-left: 10px;
+}
+
+#sign-in-btn{
+    float: right;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    background-color: #003566;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 12px;
+    padding: 5px;
+}
+
+#hero{
+    background-image: url(images/hero-image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 60vh;
+    text-align: center;
+}
+
+#get-started-btn{
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    background-color: #003566;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#hero-message{
+    color: #fff;
+    margin-top: 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    padding-top: 100px;
+    font-size: 40px;
+}
+
+#page-content{
+    display: grid;
+    grid-template-areas: 'data line your';
+    grid-template-columns: 49% 3px 49%;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+#historic-data{
+    grid-area: data;
+}
+
+#your-crypto{
+    grid-area: your;
+}
+
+#line{
+    grid-area: line;
+    background-color: #ffd60a;
+    margin-top: 10px;
+}
+
+.content-title{
+    color: #000814;
+    text-align: center;
+}
+
+#data{
+    padding-left: 10px;
+    font-size: 1.2rem;
+}
+
+#track{
+    font-size: 1.2rem;
+}
+
+.lightbox{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.618);
+    display: none;
+}
+
+#get-started{
+    background-color: #fff;
+    margin: auto;
+    margin-top: 25px;
+    width: 400px;
+    border-radius: 10px;
+    padding: 25px;
+    display: none;
+}
+
+#create-title{
+    margin-top:0;
+}
+
+.line2{
+    width: 100%;
+    height: 3px;
+    background-color:#003566;
+    margin-bottom: 15px;
+}
+
+.line3{
+    width: 100%;
+    height: 3px;
+    background-color:#003566;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+#sign-in{
+    background-color: #fff;
+    margin: auto;
+    margin-top: 25px;
+    width: 400px;
+    border-radius: 10px;
+    padding: 25px;
+    display: none;
+}
+
+.input{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.account-btn{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffd60a;
+    border-radius: 10px;
+    border: 3px solid #ffc300;
+    font-weight: 400;
+}
+
+.x{
+    margin-left: 95%;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#error-box{
+    margin: auto;
+    background-color: #fff;
+    width: 400px;
+    height: auto;
+    margin-top: 25px;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#message{
+    font-size: 20px;
+    padding-bottom: 15px;
+}
+
+#ok{
+    margin: auto;
+}
+
+#interface{
+    display: grid;
+    grid-template-areas: 'sidebar main';
+    grid-template-columns: 30% 70%;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.interface-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#side-bar{
+    grid-area: sidebar;
+    margin-right: 15px;
+}
+
+#main{
+    grid-area: main;
+}
+
+.interface-box{
+    background-color: #f1f1f1;
+    margin-top: 15px;
+}
+
+#coins{
+    margin-bottom: 15px;
+}
+
+#welcome{
+    display: flex;
+    float: left;
+    font-size: 25px;
+    margin: 0;
+    padding: 15px;
+}
+
+#search-bar{
+    display: flex;
+    float: right;
+    padding: 15px;
+    height: 25px;
+}
+
+#search-btn{
+    background-color: #ffc300;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px #ffd60a4b;
+}
+
+#coin-box{
+    margin: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    display: none;
+    width: 80%;
+}
+
+#coin-id{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+#ticker{
+    font-size: 25px;
+    margin-bottom: 5px;
+    color: #ffc300;
+}
+
+#current-price{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#chart-options{
+    width: 100%;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#chart-option{
+    width: 30%;
+    padding: 5%;
+    color: #000814;
+    background-color: #ffd60a;
+    border: 2px solid #ffc300;
+    border-radius: 5px;
+}
