@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <script src="index-script.js"></script>
+    <script src="https://kit.fontawesome.com/dacf5d1f5d.js" crossorigin="anonymous"></script>
+    <title>Coin Trail</title>
+</head>
+<body>
+    <header id="header">
+        <img id="logo" src="images/Cointraillogo.png" alt="Cointrail logo">
+        <button id="sign-in-btn" class="content" onclick="show('sign-in'), show('lightbox')">Sign In</button>
+    </header>
+    <div id="hero">
+        <h1 id="hero-message" class="title">Welcome to CoinTrail</h1>
+        <button id="get-started-btn" class="content" onclick="show('get-started'), show('lightbox')">Get Started</button>
+    </div>
+    <div id="page-content">
+        <div id="historic-data">
+            <h2 class="title content-title">Research historic data</h2>
+            <p id="data" class="content">Get access to historic data to see how a coin has performed in the past so as to make sure that your investments are informed.</p>
+        </div>
+        <div id="line"></div>
+        <div id="your-crypto">
+            <h2 class="title content-title">Track your investments</h2>
+            <ul id="track" class="content">
+                <li>Get daily highs and lows</li>
+                <li>Set price or percentage goals</li>
+                <li>Create a portfolio to view overall gains and losses</li>
+            </ul>
+        </div>
+    </div>
+    <div id="lightbox" class="lightbox">
+        <div id="get-started" class="content">
+            <i id="gs-close" class="fas fa-times-circle x" onclick="hide('get-started'), hide('lightbox')"></i>
+            <div class="line2"></div>
+            <h1 id="create-title" class="title">Create your Account</h1>
+            <div class="line2"></div>
+            <span>Create an account to view and track your crypto investements.</span><br><br>
+            <label for="username">Display Name</label><br>
+            <input type="text" id="displayname" class="input"><br><br>
+            <label for="username">Email</label><br>
+            <input type="text" id="username" class="input"><br><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" class="input"><br><br>
+            <label for="confirm-password">Confirm Password</label><br>
+            <input type="password" id="confirm-password" class="input"><br><br>
+            <button id="create-account-btn" class="account-btn" onclick="getStarted()">Create your Account</button>
+        </div>
+        <div id="sign-in" class="content">
+            <i id="si-close" class="fas fa-times-circle x" onclick="hide('sign-in'), hide('lightbox')"></i>
+            <div class="line2"></div>
+            <h1 id="sign-title" class="title">Sign In</h1>
+            <div class="line2"></div>
+            <label for="username-sign">Email</label><br>
+            <input type="text" id="username-sign" class="input"><br><br>
+            <label for="password-sign">Password</label><br>
+            <input type="password" id="password-sign" class="input"><br><br>
+            <button class="account-btn" onclick="signIn()">Sign In</button>
+        </div>
+    </div>
+    <div id="lightboxlightbox" class="lightbox">
+        <div id="error-box">
+            <div class="line2"></div>
+            <div id="message" class="content"></div>
+            <div class="line2"></div>
+            <button id="ok" class="account-btn" onclick="hide('lightboxlightbox')">Ok</button>
+        </div>
+    </div>
+</body>
+</html>
