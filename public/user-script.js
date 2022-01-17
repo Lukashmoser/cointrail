@@ -79,6 +79,8 @@ function loadUser(){
     }
     // load welcome message
     document.getElementById("welcome").innerHTML = "Welcome " + user.username;
+    // load coins
+    updateCoins();
   }); // once
 } // loadUser
 
@@ -87,7 +89,6 @@ function search(elem){
   coin = coin.toLowerCase();
   coin = coin.replace(" ","");
   let url = "https://cors-anywhere.herokuapp.com/api.coincap.io/v2/assets/" + coin;
-  console.log(url);
   if(corsEnabled){
     fetch(url, requestOptions)
     .then(response => response.json())
@@ -109,9 +110,8 @@ function errorCheck(error, elem){
 }
 
 function loadCoin(coin){
-  savedCoin = coin.data.id;
+  savedCoin = coin;
   if(coin.error != undefined){
-    console.log(coin.error);
     let errorMessage = "That isn't the name of a coin. Please check your spelling and try again.";
     document.getElementById("message").innerHTML = errorMessage;
     show("error-box");
@@ -121,6 +121,9 @@ function loadCoin(coin){
     document.getElementById("coin-id").innerHTML = coin.data.name;
     document.getElementById("ticker").innerHTML = coin.data.symbol;
     document.getElementById("current-price").innerHTML = "USD $" + coin.data.priceUsd;
+    document.getElementById("coin-id-trail").innerHTML = coin.data.name;
+    document.getElementById("ticker-trail").innerHTML = coin.data.symbol;
+    document.getElementById("current-price-trail").innerHTML = "USD $" + coin.data.priceUsd;
     loadChart(coin.data.id, 'm30');
   }
 }
@@ -193,6 +196,55 @@ function loadChart(id, interval){
 
   show("coin-box");
   show("lightbox2");
+}
+
+function trailCoin(type){
+  let coinValue = savedCoin.data.priceUsd;
+  let amount = 0;
+  let value = 0;
+  let id = savedCoin.data.id;
+  if(type == "#"){
+    amount = document.getElementById("amount").value;
+    value = amount * coinValue;
+  } else{
+    value = document.getElementById("amount").value;
+    amount = value / coinValue;
+  }
+  if(users[userIndex].coins == "none"){
+    users[userIndex].coins = [];
+  }
+  users[userIndex].coins[users[userIndex].coins.length] = {
+    name: id,
+    amount: amount,
+    value: value
+  }
+
+  firebase.database().ref('userList').set(users);
+
+  updateCoins();
+
+  hide("trail-box");
+  hide("lightbox2");
+}
+
+function updateCoins(){
+  if(users[userIndex].coins == "none"){
+    show("no-coins");
+  } else{
+    hide("no-coins");
+    for(let i = 0; i < users[userIndex].coins.length; i++){
+      let url = "https://cors-anywhere.herokuapp.com/api.coincap.io/v2/assets/" + users[userIndex].coins[i].id;
+      fetch(url, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        let name;
+        let buyValue; 
+        let currentValue; 
+        let ticker;
+        //document.getElementById("coins-box").innerHTML +=
+      });
+    }
+  }
 }
 
 function toggleCORS(){

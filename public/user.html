@@ -70,9 +70,9 @@
         <div id="coin-box">
             <i id="gs-close" class="fas fa-times-circle x" onclick="hide('coin-box'), hide('lightbox2')"></i>
             <div class="line2"></div>
-            <div id="coin-id" class="title"></div>
-            <div id="ticker" class="title"></div>
-            <div id="current-price" class="title"></div>
+            <div id="coin-id" class="title coin-id"></div>
+            <div id="ticker" class="title ticker"></div>
+            <div id="current-price" class="title current-price"></div>
             <div class="line2"></div>
             <div id="chart-box" class="content">
                 <div id="chart-title"></div>
@@ -84,8 +84,20 @@
                 <button class="chart-option" onclick="loadChart(savedCoin, 'h12')">1 month</button>
             </div>
             <div id="trail-options">
-                <button id="trail-coin" class="content" onclick="trailCoin()">Trail this coin</button>
+                <button id="trail-coin" class="content" onclick="show('lightbox2'), show('trail-box'), hide('coin-box')">Trail this coin</button>
             </div>
+        </div>
+        <div id="trail-box" class="content">
+            <i id="gs-close" class="fas fa-times-circle x" onclick="hide('trail-box'), hide('lightbox2')"></i>
+            <div class="line2"></div>
+            <div id="coin-id-trail" class="title coin-id"></div>
+            <div id="ticker-trail" class="title ticker"></div>
+            <div id="current-price-trail" class="title current-price"></div>
+            <div class="line2"></div>
+            <label for="amount" class="title">Amount # / Value $</label><br>
+            <input id="amount" type="number" class="input"><br><br>
+            <button id="amount-coins" class="account-btn" onclick="trailCoin('#')"># Amount</button>
+            <button id="value-coins" class="account-btn" onclick="trailCoin('$')">$ Value</button>
         </div>
     </div>
     

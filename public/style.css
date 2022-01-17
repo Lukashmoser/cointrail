@@ -277,18 +277,18 @@ button:hover{
     width: 80%;
 }
 
-#coin-id{
+.coin-id{
     font-size: 30px;
     margin-bottom: 5px;
 }
 
-#ticker{
+.ticker{
     font-size: 25px;
     margin-bottom: 5px;
     color: #ffc300;
 }
 
-#current-price{
+.current-price{
     font-size: 20px;
     margin-bottom: 15px;
 }
@@ -326,4 +326,14 @@ button:hover{
     border-radius: 5px;
     margin-top: 5px;
     font-size: 20px;
+}
+
+#trail-box{
+    margin: auto;
+    margin-top: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    display: none;
+    width: 80%;
 }
