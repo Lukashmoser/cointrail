@@ -35,6 +35,8 @@ var requestOptions = {
   })
 }; // request options for fetch request
 let savedCoin = ""; // global save of current coin
+var chart;
+let chartUsed = false;
 
 window.onload = loadUser();
 
@@ -107,6 +109,7 @@ function errorCheck(error, elem){
 }
 
 function loadCoin(coin){
+  savedCoin = coin.data.id;
   if(coin.error != undefined){
     console.log(coin.error);
     let errorMessage = "That isn't the name of a coin. Please check your spelling and try again.";
@@ -128,7 +131,10 @@ function loadChart(id, interval){
   let timeStart = "";
   let timeEnd = Date.now();
   let graphName = "";
-  var chart = "";
+  if(chartUsed){
+    chart.destroy();
+  }
+  chartUsed = true;
   switch(interval) {
     case "m30":
       //case for 1 day
@@ -149,6 +155,7 @@ function loadChart(id, interval){
   document.getElementById("chart-title").innerHTML = graphName;
 
   url = baseURL + id + "/history?interval=" + interval + "&start=" + timeStart + "&end=" + timeEnd;
+
   console.log(url);
   fetch(url, requestOptions)
   .then(response => response.json())

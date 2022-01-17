@@ -269,6 +269,7 @@ button:hover{
 
 #coin-box{
     margin: auto;
+    margin-top: 25px;
     background-color: #fff;
     border-radius: 10px;
     padding: 15px;
@@ -298,11 +299,31 @@ button:hover{
     text-align: center;
 }
 
-#chart-option{
+.chart-option{
     width: 30%;
-    padding: 5%;
+    padding: 5px;
     color: #000814;
     background-color: #ffd60a;
     border: 2px solid #ffc300;
     border-radius: 5px;
+}
+
+#chart-title{
+    text-align: center;
+}
+
+#trail-options{
+    width: 100%;
+    text-align: center;
+}
+
+#trail-coin{
+    width: 90%;
+    padding: 5px;
+    color: #f1f1f1;
+    background-color: #003566;
+    border: 2px solid #001d3d;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 20px;
 }

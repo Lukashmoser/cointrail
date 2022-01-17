@@ -78,10 +78,13 @@
                 <div id="chart-title"></div>
                 <canvas id="chart"></canvas>
             </div>
-            <div id="chart-options">
+            <div id="chart-options" class="content">
                 <button class="chart-option" onclick="loadChart(savedCoin, 'm30')">24 hours</button>
                 <button class="chart-option" onclick="loadChart(savedCoin, 'h2')">5 days</button>
                 <button class="chart-option" onclick="loadChart(savedCoin, 'h12')">1 month</button>
+            </div>
+            <div id="trail-options">
+                <button id="trail-coin" class="content" onclick="trailCoin()">Trail this coin</button>
             </div>
         </div>
     </div>
