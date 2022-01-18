@@ -35,12 +35,15 @@ var requestOptions = {
   })
 }; // request options for fetch request
 let savedCoin = ""; // global save of current coin
-var chart;
-let chartUsed = false;
+var chart; // chart variable;
+let chartUsed = false; // whether or not the chart has been loaded
+let ta = 0; // store total assets before displaying to screen
+let assetAllocation = []; // store how much of each coin you have
 
 window.onload = loadUser();
 
 function loadUser(){
+  let ta = 0;
   let userFound = false;
   uid = sessionStorage.getItem("user");
   displayname = sessionStorage.getItem("name");
@@ -230,20 +233,36 @@ function trailCoin(type){
 function updateCoins(){
   if(users[userIndex].coins == "none"){
     show("no-coins");
+    show("no-assets")
   } else{
     hide("no-coins");
     for(let i = 0; i < users[userIndex].coins.length; i++){
-      let url = "https://cors-anywhere.herokuapp.com/api.coincap.io/v2/assets/" + users[userIndex].coins[i].id;
+      let url = "https://cors-anywhere.herokuapp.com/api.coincap.io/v2/assets/" + users[userIndex].coins[i].name;
       fetch(url, requestOptions)
       .then(response => response.json())
       .then(result => {
-        let name;
-        let buyValue; 
-        let currentValue; 
-        let ticker;
-        //document.getElementById("coins-box").innerHTML +=
+        let name = result.data.name;
+        let buyValue = users[userIndex].coins[i].value;
+        let currentValue = result.data.priceUsd * users[userIndex].coins[i].amount;
+        let ticker = result.data.symbol;
+        ta += result.data.priceUsd * users[userIndex].coins[i].amount;
+        assetAllocation[assetAllocation.length] = {
+          ticker: ticker,
+          amount: currentValue
+        };
+        document.getElementById("coins-box").innerHTML += "<div class='display-coin'><div class='name title'>"+ name +"</div><div class='display-ticker title'>"+ ticker +"</div><div class='buy-value'>Buy Value : USD$"+ buyValue +"</div><div class='current-value'>Current Value : USD$"+ currentValue +"</div></div>";
+        document.getElementById("ta").innerHTML = Math.round(ta) + ".00";
       });
     }
+    hide("no-assets");
+    setTimeout(updateAssetAllocation(),1000);
+  }
+}
+
+function updateAssetAllocation(){
+  console.log(assetAllocation);
+  for(let i = 0; i < assetAllocation.length; i++){
+    
   }
 }
 
