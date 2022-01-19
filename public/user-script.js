@@ -43,20 +43,20 @@ let assetAllocation = []; // store how much of each coin you have
 window.onload = loadUser();
 
 function loadUser(){
-  let ta = 0;
+  ta = 0;
   let userFound = false;
   uid = sessionStorage.getItem("user");
   displayname = sessionStorage.getItem("name");
 
   userList.once('value', function(data){
     users = data.val();
-    console.log(users);
     if(users == 0){
       //add first user
       let userData = [{
         uid: uid,
         username: displayname,
-        coins: "none"
+        coins: "none",
+
       }];
       userList.set(userData);
     } else {
@@ -83,7 +83,15 @@ function loadUser(){
     // load welcome message
     document.getElementById("welcome").innerHTML = "Welcome " + user.username;
     // load coins
-    updateCoins();
+    if(corsEnabled){
+      updateCoins();
+    } else {
+      document.getElementById("message").innerHTML = "This page requires cors to be enabled. Please visit the link <a onclick='toggleCORS()' href='https://cors-anywhere.herokuapp.com/corsdemo' target='_blank' rel='noopener noreferrer'>here</a> and click the request temporary access button.";
+      document.getElementById("ok").setAttribute('onclick', "hide('lightbox2'), hide('error-box'), updateCoins()");
+      show("error-box");
+      show("lightbox2");
+    }
+    
   }); // once
 } // loadUser
 
@@ -92,16 +100,19 @@ function search(elem){
   coin = coin.toLowerCase();
   coin = coin.replace(" ","");
   let url = "https://cors-anywhere.herokuapp.com/api.coincap.io/v2/assets/" + coin;
-  if(corsEnabled){
+  if(corsEnabled && coin != ""){
     fetch(url, requestOptions)
     .then(response => response.json())
     .then(result => loadCoin(result));
+  } else if(coin == ""){
+    document.getElementById("message").innerHTML = "Please enter something to search.";
+    show("error-box");
+    show("lightbox2");
   } else {
     document.getElementById("message").innerHTML = "This feature requires cors to be enabled. Please visit the link <a onclick='toggleCORS()' href='https://cors-anywhere.herokuapp.com/corsdemo' target='_blank' rel='noopener noreferrer'>here</a> and click the request temporary access button.";
     show("error-box");
     show("lightbox2");
   }
-  
 }
 
 function errorCheck(error, elem){
@@ -120,7 +131,6 @@ function loadCoin(coin){
     show("error-box");
     show('lightbox2');
   } else {
-    console.log(coin);
     document.getElementById("coin-id").innerHTML = coin.data.name;
     document.getElementById("ticker").innerHTML = coin.data.symbol;
     document.getElementById("current-price").innerHTML = "USD $" + coin.data.priceUsd;
@@ -159,10 +169,7 @@ function loadChart(id, interval){
       break;
   }
   document.getElementById("chart-title").innerHTML = graphName;
-
   url = baseURL + id + "/history?interval=" + interval + "&start=" + timeStart + "&end=" + timeEnd;
-
-  console.log(url);
   fetch(url, requestOptions)
   .then(response => response.json())
   .then(result => {
@@ -172,7 +179,6 @@ function loadChart(id, interval){
       xValues[i] = i;
       yValues[i] = result.data[i].priceUsd;
     }
-    console.log(result);
     chart = new Chart("chart", {
       type: "line",
       data: {
@@ -231,6 +237,10 @@ function trailCoin(type){
 }
 
 function updateCoins(){
+  assetAllocation = [];
+  if(!corsEnabled){
+    return;
+  }
   if(users[userIndex].coins == "none"){
     show("no-coins");
     show("no-assets")
@@ -253,8 +263,7 @@ function updateCoins(){
         document.getElementById("coins-box").innerHTML += "<div class='display-coin'><div class='name title'>"+ name +"</div><div class='display-ticker title'>"+ ticker +"</div><div class='buy-value'>Buy Value : USD$"+ buyValue +"</div><div class='current-value'>Current Value : USD$"+ currentValue +"</div></div>";
         document.getElementById("ta").innerHTML = Math.round(ta) + ".00";
         if(i == users[userIndex].coins.length - 1){
-          console.log("running asset allocation update");
-          setTimeout(updateAssetAllocation(),1000);
+          setTimeout(updateAssetAllocation(),4000);
         }
       });
     }
@@ -264,10 +273,11 @@ function updateCoins(){
 
 function updateAssetAllocation(){
   console.log(assetAllocation.length);
+  document.getElementById("allocation-box").innerHTML = "";
   for(let i = 0; i < assetAllocation.length; i++){
     let percent = assetAllocation[i].amount / ta * 100;
     let id = "allocation" + i;
-    document.getElementById("allocation-box").innerHTML += "<div class='allocation'><div class='allocation-type'>" + assetAllocation[i].ticker + "</div><div class='percent-bar'><div class='percent' id='" + id + "'></div></div></div>";
+    document.getElementById("allocation-box").innerHTML += "<div class='allocation'><div class='allocation-type'>" + assetAllocation[i].ticker + " " + Math.ceil(percent) + "%</div><div class='percent-bar'><div class='percent' id='" + id + "'></div></div></div>";
     document.getElementById(id).style.width = percent + "%";
   }
 }

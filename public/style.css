@@ -43,7 +43,7 @@ button:hover{
 
 #logo{
     height: 60px;
-    width: auto;
+    width: 127px;
     margin-left: 10px;
 }
 
@@ -141,7 +141,8 @@ button:hover{
     background-color: #fff;
     margin: auto;
     margin-top: 25px;
-    width: 400px;
+    width: 80%;
+    max-width: 400px;
     border-radius: 10px;
     padding: 25px;
     display: none;
@@ -170,7 +171,8 @@ button:hover{
     background-color: #fff;
     margin: auto;
     margin-top: 25px;
-    width: 400px;
+    width: 80%;
+    max-width: 400px;
     border-radius: 10px;
     padding: 25px;
     display: none;
@@ -197,7 +199,8 @@ button:hover{
 #error-box{
     margin: auto;
     background-color: #fff;
-    width: 400px;
+    width: 80%;
+    max-width: 400px;
     height: auto;
     margin-top: 25px;
     border-radius: 10px;
@@ -352,7 +355,7 @@ button:hover{
 }
 
 .display-ticker{
-    color: #ffd60a;
+    color: #003566;
     font-size: 15px;
     font-weight: 700;
 }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#001d3d">
+    <meta name="description" content="A website designed to allow for multiple users to log in and then access and look at different crypto prices.">
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
@@ -24,8 +25,8 @@
     <div id="welcome-bar">
         <h1 id="welcome" class="title">Welcome</h1>
         <div id="search-bar">
-            <input type="text" id="interface-search">
-            <button id="search-btn" onclick="search('interface-search')"><i class="fas fa-search"></i></button>
+            <input type="text" id="interface-search" aria-label="Search Bar">
+            <button id="search-btn" onclick="search('interface-search')" aria-label="Search Button"><i class="fas fa-search"></i></button>
         </div>
     </div>
     <div id="interface">

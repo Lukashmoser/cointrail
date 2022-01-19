@@ -50,12 +50,16 @@ function getStarted(){
     })
     .catch((error) => {
       var errorCode = error.code;
-      errorMessage = error.message;
-      document.getElementById("displayname").value = "";
-      document.getElementById("username").value = "";
+      switch(errorCode){
+        case "auth/weak-password":
+          errorMessage = "Your password needs to be at least 6 characters long";
+        case "auth/email-already-in-use":
+          errorMessage = "This email is already in se by another account. PLease use a different email or go back and select the sign in option";
+      }
       document.getElementById("password").value = "";
       document.getElementById("confirm-password").value = "";
       document.getElementById("message").innerHTML = errorMessage;
+      console.log(error);
       show("lightboxlightbox");
       return;
     });
@@ -81,10 +85,20 @@ function signIn(){
     })
     .catch((error) => {
       var errorCode = error.code;
-      errorMessage = error.message;
+      switch(errorCode) {
+        case "auth/invalid-email":
+          errorMessage = "That is not a valid email. Please make sure that you type in yor full email address.";
+        case "auth/wrong-password":
+          errorMessage = "Your password is incorret. Please try again.";
+        case "auth/user-not-found":
+          errorMessage = "An account has not been created with this email. Please go back and select the get started option.";
+        case undefined:
+          errorMessage = "This page requires an internet connection. Please obtain one and try again."
+      }
       document.getElementById("username-sign").value = "";
       document.getElementById("password-sign").value = "";
       document.getElementById("message").innerHTML = errorMessage;
+      console.log(error);
       show("lightboxlightbox");
       return;
     });
