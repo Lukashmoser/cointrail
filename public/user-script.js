@@ -252,17 +252,23 @@ function updateCoins(){
         };
         document.getElementById("coins-box").innerHTML += "<div class='display-coin'><div class='name title'>"+ name +"</div><div class='display-ticker title'>"+ ticker +"</div><div class='buy-value'>Buy Value : USD$"+ buyValue +"</div><div class='current-value'>Current Value : USD$"+ currentValue +"</div></div>";
         document.getElementById("ta").innerHTML = Math.round(ta) + ".00";
+        if(i == users[userIndex].coins.length - 1){
+          console.log("running asset allocation update");
+          setTimeout(updateAssetAllocation(),1000);
+        }
       });
     }
     hide("no-assets");
-    setTimeout(updateAssetAllocation(),1000);
   }
 }
 
 function updateAssetAllocation(){
-  console.log(assetAllocation);
+  console.log(assetAllocation.length);
   for(let i = 0; i < assetAllocation.length; i++){
-    
+    let percent = assetAllocation[i].amount / ta * 100;
+    let id = "allocation" + i;
+    document.getElementById("allocation-box").innerHTML += "<div class='allocation'><div class='allocation-type'>" + assetAllocation[i].ticker + "</div><div class='percent-bar'><div class='percent' id='" + id + "'></div></div></div>";
+    document.getElementById(id).style.width = percent + "%";
   }
 }
 

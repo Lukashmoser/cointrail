@@ -364,3 +364,28 @@ button:hover{
 .current-value{
     font-size: 15px;
 }
+
+.allocation{
+    width: 100%;
+    margin-top: 5px;
+    border: 2px solid #003566;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.allocation-type{
+    font-size: 15px;
+}
+
+.percent-bar{
+    background-color: #0035665f;
+    height: 5px;
+    border-radius: 5px;
+}
+
+.percent{
+    background-color: #001d3d;
+    height: 5px;
+    border-radius: 5px;
+}
