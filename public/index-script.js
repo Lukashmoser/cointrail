@@ -54,7 +54,12 @@ function getStarted(){
         case "auth/weak-password":
           errorMessage = "Your password needs to be at least 6 characters long";
         case "auth/email-already-in-use":
-          errorMessage = "This email is already in se by another account. PLease use a different email or go back and select the sign in option";
+          errorMessage = "This email is already in se by another account. Please use a different email or go back and select the sign in option";
+        case undefined:
+          errorMessage = "This page requires an internet connection. Please obtain one and try again.";
+        case "auth/network-request-failed":
+          errorMessage = "This page requires an internet connection. Please obtain one and try again.";
+        
       }
       document.getElementById("password").value = "";
       document.getElementById("confirm-password").value = "";
