@@ -18,7 +18,6 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(caches.match(event.request).then(function(response) {
-    //console.log(response);
     // caches.match() always resolves
     // but in case of success response will have value
     if (response !== undefined) {
@@ -31,7 +30,11 @@ self.addEventListener('fetch', function(event) {
         let responseClone = response.clone();
 
         caches.open(version).then(function (cache) {
-          cache.put(event.request, responseClone);
+          if(event.request.method == 'POST'){
+            return;
+          } else {
+            cache.put(event.request, responseClone);
+          }
         });
         return response;
       }).catch(function () {

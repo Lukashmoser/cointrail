@@ -1,3 +1,4 @@
+// service worker init
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js');
 }
@@ -42,6 +43,7 @@ let assetAllocation = []; // store how much of each coin you have
 
 window.onload = loadUser();
 
+// loads all data relevant to the user and displays it on the page
 function loadUser(){
   ta = 0;
   let userFound = false;
@@ -95,6 +97,7 @@ function loadUser(){
   }); // once
 } // loadUser
 
+// allows users to search for specific coins
 function search(elem){
   let coin = document.getElementById(elem).value;
   coin = coin.toLowerCase();
@@ -113,16 +116,9 @@ function search(elem){
     show("error-box");
     show("lightbox2");
   }
-}
+} // search
 
-function errorCheck(error, elem){
-  document.getElementById(elem).value = "";
-  let errorMessage = "That isn't the name of a coin. Please check your spelling and try again.";
-  document.getElementById("message").innerHTML = errorMessage;
-  show("error-box");
-  show('lightbox2');
-}
-
+// loads all the data returned by search to it's relative places
 function loadCoin(coin){
   savedCoin = coin;
   if(coin.error != undefined){
@@ -139,8 +135,9 @@ function loadCoin(coin){
     document.getElementById("current-price-trail").innerHTML = "USD $" + coin.data.priceUsd;
     loadChart(coin.data.id, 'm30');
   }
-}
+} // loadCoin
 
+// load a chart for the coin based off of what time frame was chosen
 function loadChart(id, interval){
   let baseURL = "https://cors-anywhere.herokuapp.com/api.coincap.io/v2/assets/";
   let url = "";
@@ -194,7 +191,7 @@ function loadChart(id, interval){
         scales: {
           xAxes: [{
               ticks: {
-                  display: false //this will remove only the label
+                  display: false
               }
           }]
         }
@@ -205,8 +202,9 @@ function loadChart(id, interval){
 
   show("coin-box");
   show("lightbox2");
-}
+} // loadChart
 
+// allows user to add coin to their home screen
 function trailCoin(type){
   let coinValue = savedCoin.data.priceUsd;
   let amount = 0;
@@ -234,10 +232,13 @@ function trailCoin(type){
 
   hide("trail-box");
   hide("lightbox2");
-}
+} // trailCoin
 
+// updates coin values to there newest values
 function updateCoins(){
   assetAllocation = [];
+  ta = 0;
+  document.getElementById("coins-storage").innerHTML = "";
   if(!corsEnabled){
     return;
   }
@@ -260,7 +261,7 @@ function updateCoins(){
           ticker: ticker,
           amount: currentValue
         };
-        document.getElementById("coins-box").innerHTML += "<div class='display-coin'><div class='name title'>"+ name +"</div><div class='display-ticker title'>"+ ticker +"</div><div class='buy-value'>Buy Value : USD$"+ buyValue +"</div><div class='current-value'>Current Value : USD$"+ currentValue +"</div></div>";
+        document.getElementById("coins-storage").innerHTML += "<div class='display-coin'><div class='name title'>"+ name +"</div><div class='display-ticker title'>"+ ticker +"</div><div class='buy-value'>Buy Value : USD$"+ buyValue +"</div><div class='current-value'>Current Value : USD$"+ currentValue +"</div></div>";
         document.getElementById("ta").innerHTML = Math.round(ta) + ".00";
         if(i == users[userIndex].coins.length - 1){
           setTimeout(updateAssetAllocation(),4000);
@@ -269,27 +270,36 @@ function updateCoins(){
     }
     hide("no-assets");
   }
-}
+} // updateCoins
 
+// updates asset allocatio which shows what percent of the users portfolio is what coin
 function updateAssetAllocation(){
   console.log(assetAllocation.length);
   document.getElementById("allocation-box").innerHTML = "";
-  for(let i = 0; i < assetAllocation.length; i++){
-    let percent = assetAllocation[i].amount / ta * 100;
-    let id = "allocation" + i;
-    document.getElementById("allocation-box").innerHTML += "<div class='allocation'><div class='allocation-type'>" + assetAllocation[i].ticker + " " + Math.ceil(percent) + "%</div><div class='percent-bar'><div class='percent' id='" + id + "'></div></div></div>";
-    document.getElementById(id).style.width = percent + "%";
+  if(assetAllocation.length == users[userIndex].coins.length){
+    for(let i = 0; i < assetAllocation.length; i++){
+      let percent = assetAllocation[i].amount / ta * 100;
+      let id = "allocation" + i;
+      document.getElementById("allocation-box").innerHTML += "<div class='allocation'><div class='allocation-type'>" + assetAllocation[i].ticker + " " + Math.ceil(percent) + "%</div><div class='percent-bar'><div class='percent' id='" + id + "'></div></div></div>";
+      document.getElementById(id).style.width = percent + "%";
+    }
   }
-}
+  else{
+    setTimeout(updateAssetAllocation, 1000);
+  } 
+} // updateAssestAllocation
 
+// detects whether or not te herokuapp demo server has been activated
 function toggleCORS(){
   corsEnabled = true;
-}
+} // toggleCORS
 
+// hides elements
 function hide(elem){
   document.getElementById(elem).style.display = "none";
 } // hide
 
+// shows elements
 function show(elem){
   document.getElementById(elem).style.display = "block";
 } // show

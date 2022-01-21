@@ -1,3 +1,4 @@
+// service worker init
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js');
 }
@@ -19,9 +20,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 //global variables
-let errorMessage = "";
-let user = null;
+let errorMessage = ""; // stores error message
+let user = null; // stores users details to sent to user-script.js
 
+// allos new user to create an account
 function getStarted(){
   let displayname = document.getElementById("displayname").value;
   let username = document.getElementById("username").value;
@@ -64,13 +66,14 @@ function getStarted(){
       document.getElementById("password").value = "";
       document.getElementById("confirm-password").value = "";
       document.getElementById("message").innerHTML = errorMessage;
-      console.log(error);
       show("lightboxlightbox");
       return;
     });
   }
 } // getStarted
 
+
+// allows user to sign in
 function signIn(){
   let username = document.getElementById("username-sign").value;
   let password = document.getElementById("password-sign").value;
@@ -84,7 +87,6 @@ function signIn(){
     .then((userCredential) => {
       // Signed in
       user = userCredential.user.uid;
-      console.log(user);
       sessionStorage.setItem("user", user);
       window.location.href = "user.html";
     })
@@ -103,7 +105,6 @@ function signIn(){
       document.getElementById("username-sign").value = "";
       document.getElementById("password-sign").value = "";
       document.getElementById("message").innerHTML = errorMessage;
-      console.log(error);
       show("lightboxlightbox");
       return;
     });

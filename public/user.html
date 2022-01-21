@@ -52,13 +52,7 @@
                 <div class="line3"></div>
                 <div id="coins-box" class="content interface-box">
                     <span id="no-coins">You're not trailing any coins yet.</span>
-                </div>
-            </div>
-            <div id="alerts">
-                <span class="title interface-title">Alerts</span>
-                <div class="line3"></div>
-                <div id="alerts-box" class="content interface-box">
-                    <span id="no-alerts">You haven't set any alerts yet.</span>
+                    <div id="coins-storage"></div>
                 </div>
             </div>
         </div>
@@ -71,7 +65,7 @@
             <button id="ok" class="account-btn" onclick="hide('lightbox2'), hide('error-box')">Ok</button>
         </div>
         <div id="coin-box">
-            <i id="gs-close" class="fas fa-times-circle x" onclick="hide('coin-box'), hide('lightbox2')"></i>
+            <i id="cb-close" class="fas fa-times-circle x" onclick="hide('coin-box'), hide('lightbox2')"></i>
             <div class="line2"></div>
             <div id="coin-id" class="title coin-id"></div>
             <div id="ticker" class="title ticker"></div>
